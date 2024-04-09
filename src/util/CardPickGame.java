@@ -55,8 +55,6 @@ public class CardPickGame {
    */
   private boolean judgeCard(int getCardResult) {
     final int WINNING_THRESHOLD = 11; // 勝利条件：カードの合計値が11以上
-
-    if (getCardResult < WINNING_THRESHOLD) return false; // 負け
-    else return true; // 勝ち
+    return (getCardResult >= WINNING_THRESHOLD) ? true : false;
   }
 }
