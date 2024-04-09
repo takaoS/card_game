@@ -51,7 +51,7 @@ public class GameUtils {
     } catch (NumberFormatException e) {
       e.getStackTrace();
       System.out.println("入力エラー：半角整数を入力してください");
-      getInputInt();
+      inputInt = getInputInt();
     }
 
     return inputInt;
