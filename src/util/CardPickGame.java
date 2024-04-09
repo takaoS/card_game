@@ -16,26 +16,44 @@ public class CardPickGame {
 
   /**
    * 現在の所持コイン数を表示し、ゲームを開始するかどうかユーザーに入力を求め、ゲームを実行する (A) 。
-   * 終了する場合は、現在の所持コイン数を返して終了し、開始する場合は、コインをベットしてもらい勝敗に応じてコインを獲得・喪失し、Aに戻る。
+   * 終了する場合は、現在の所持コイン数を返して終了し、開始する場合は、コインをベットしてもらい勝敗に応じてコインを獲得し、Aに戻る。
    * @return
    */
   public int execute() {
-    // 所持コイン数が 0枚の場合：ゲーム終了
-    if (this.possessionCoin == 0) return this.possessionCoin;
-
-    // ゲームを開始するかどうかユーザーに入力を求める
     while (true) {
-      System.out.println("現在の所持コイン数：" + this.possessionCoin + "枚 … ゲームを開始しますか？ y / n");
-      String startButton = GameUtils.getInputString();
+      // 所持コイン数が 0枚の場合：ゲーム終了
+      if (this.possessionCoin == 0) return this.possessionCoin;
 
-      if (startButton == "y") break; // ゲーム開始
-      else if (startButton == "n") return this.possessionCoin; // ゲーム終了
-      else System.out.println("開始の場合は y を、終了の場合は n を入力してください"); // 入力エラーの処理
+      // ゲームを開始するかどうかユーザーに入力を求める
+      while (true) {
+        System.out.println("現在の所持コイン数：" + this.possessionCoin + "枚 … ゲームを開始しますか？ y / n");
+        String startButton = GameUtils.getInputString();
+
+        if (startButton.equals("y")) break; // ゲーム開始
+        else if (startButton.equals("n")) return this.possessionCoin; // ゲーム終了
+        else System.out.println("開始の場合は y を、終了の場合は n を入力してください"); // 入力エラーの処理
+      }
+
+      // ゲーム開始後の処理
+      int currentMaxBetCoin = (this.possessionCoin < this.maxBetCoin) ? this.possessionCoin : this.maxBetCoin;
+      System.out.println("1〜" + currentMaxBetCoin + "枚のコインをベットしてください");
+
+      int betCoinValue;
+      while (true) {
+        betCoinValue = GameUtils.getInputInt();
+        if (0 < betCoinValue && betCoinValue <= currentMaxBetCoin) break; // ベット完了
+      }
+
+      boolean gameResult = judgeCard(getCard());
+      int getCoinValue = 0;
+
+      if (gameResult) { // 勝敗の判定
+        getCoinValue = betCoinValue * 2;
+        System.out.println("あなたの勝ち！ 獲得コイン：" + getCoinValue + "枚");
+      } else {
+        System.out.println("あなたの負けです…残念でした（笑）");
+      }
     }
-
-    // ゲーム開始後の処理
-
-    return 0; // エラー回避用の仮のreturn文
   }
 
   /**
