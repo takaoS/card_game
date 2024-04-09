@@ -2,7 +2,8 @@ import util.GameUtils;
 
 public class ExeTest {
   public static void main(String[] args) {
-    Integer randomInt = GameUtils.getRandomInt(30);
-    System.out.println("乱数：" + randomInt);
+    String testStr = GameUtils.getInputString();
+    boolean result = GameUtils.checkPattern(testStr);
+    System.out.println("チェック結果：" + result);
   }
  }
