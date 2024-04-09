@@ -35,8 +35,8 @@ public class CardPickGame {
     }
 
     // カードを1枚ずつ、それぞれのデッキから引く
-    int cardA = deck[0][GameUtils.getRandomInt(maxCardValue-1)];
-    int cardB = deck[1][GameUtils.getRandomInt(maxCardValue-1)];
+    int cardA = deck[0][GameUtils.getRandomInt(maxCardValue)];
+    int cardB = deck[1][GameUtils.getRandomInt(maxCardValue)];
 
     // 引いたそれぞれのカードと合計値を出力し、合計値を返す
     int total = cardA + cardB;
