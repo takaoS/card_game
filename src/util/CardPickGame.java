@@ -14,12 +14,16 @@ public class CardPickGame {
     this.possessionCoin = _possessionCoin;
   }
 
+  public void execute() {
+    getCard();
+  }
+
   /**
    * 1〜10を1組とした2つのカードデッキから、それぞれ1枚カードを引き、その結果と合計値を表示。また、その合計値を返却する。
    * 
    * @return 引いた2枚のカードの合計値
    */
-  public int getCard() {
+  private int getCard() {
     int maxCardValue = 10;
     int[][] deck = new int[deckSetCount][maxCardValue];
 
