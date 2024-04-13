@@ -41,9 +41,11 @@ public class CardPickGame {
       int betCoinValue;
       while (true) {
         betCoinValue = GameUtils.getInputInt();
-        // System.out.println("デバッグ用：" + betCoinValue);
         if (0 < betCoinValue && betCoinValue <= currentMaxBetCoin) break; // ベット完了
       }
+
+      // 所持コインからベットした分を引く
+      this.possessionCoin -= betCoinValue;
 
       boolean gameResult = judgeCard(getCard());
       int getCoinValue = 0;
@@ -51,6 +53,8 @@ public class CardPickGame {
       if (gameResult) { // 勝敗の判定
         getCoinValue = betCoinValue * 2;
         System.out.println("あなたの勝ち！ 獲得コイン：" + getCoinValue + "枚");
+        this.possessionCoin += getCoinValue; // 所持コインに獲得した分を足す
+        
       } else {
         System.out.println("あなたの負けです…残念でした（笑）");
       }
