@@ -23,7 +23,6 @@ public class GameUtils {
     String inputStr = null;
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    System.out.println("入力してください：");
     try {
       inputStr = br.readLine();
 

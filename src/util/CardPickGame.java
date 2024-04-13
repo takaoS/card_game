@@ -41,7 +41,6 @@ public class CardPickGame {
       int betCoinValue;
       while (true) {
         betCoinValue = GameUtils.getInputInt();
-        // System.out.println("デバッグ用：" + betCoinValue);
         if (0 < betCoinValue && betCoinValue <= currentMaxBetCoin) break; // ベット完了
       }
 
