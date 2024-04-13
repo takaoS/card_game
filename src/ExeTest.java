@@ -1,9 +1,9 @@
+import util.CardPickGame;
 import util.GameUtils;
 
 public class ExeTest {
   public static void main(String[] args) {
-    String testStr = GameUtils.getInputString();
-    boolean result = GameUtils.checkPattern(testStr);
-    System.out.println("チェック結果：" + result);
+    CardPickGame obj = new CardPickGame(1000);
+    obj.execute();
   }
  }

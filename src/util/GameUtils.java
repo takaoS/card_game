@@ -51,7 +51,7 @@ public class GameUtils {
     } catch (NumberFormatException e) {
       e.getStackTrace();
       System.out.println("入力エラー：半角整数を入力してください");
-      getInputInt();
+      inputInt = getInputInt();
     }
 
     return inputInt;
@@ -65,7 +65,7 @@ public class GameUtils {
    */
   public static int getRandomInt(int maxValue) {
     Random random = new Random();
-    int randomInt = random.nextInt(maxValue);
+    int randomInt = random.nextInt(maxValue); // 0〜指定された値未満の整数を生成
     return randomInt;
   }
 
