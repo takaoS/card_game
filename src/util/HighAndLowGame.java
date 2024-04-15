@@ -23,7 +23,7 @@ public class HighAndLowGame {
    * まずはカードを引き、そのカードの番号を出力した後、ハイ＆ローゲームに挑戦するかどうかユーザーに入力を求め、ゲームを実行する (A) 。
    * 終了する場合は、獲得したコインを数を返して終了し、挑戦する場合は、次に引くカードの番号の方が大きいかどうかを予想してもらい、その結果に応じてコインを獲得し、Aに戻る。
    * 
-   * @return
+   * @return ゲームによって最終的に獲得したコイン数
    */
   public int execute() {
     while (true) {
@@ -47,6 +47,7 @@ public class HighAndLowGame {
       // ゲーム開始後の処理
       boolean isHigh;
       while (true) {
+        System.out.print("\n");
         System.out.println("次に引くカードの番号の方が、大きいと思う？小さいと思う？ h/l");
         String ans = GameUtils.getInputString();
 
@@ -67,8 +68,8 @@ public class HighAndLowGame {
       cardList = this.getCard(cardList);
 
       // 結果判定
-      boolean gameResult = this.judgeCard(cardList, isHigh);
-      if (gameResult) this.earnedCoinCount *= 2; // 勝ち：獲得コインを２倍にする
+      boolean isWinner = this.judgeCard(cardList, isHigh);
+      if (isWinner) this.earnedCoinCount *= 2; // 勝ち：獲得コインを２倍にする
       else this.earnedCoinCount = 0;             // 負け：獲得コインを０にする
 
       // ゲームを続けるかどうかの判定
@@ -104,9 +105,10 @@ public class HighAndLowGame {
 
       // 引いたカードを表示する
       int lastIdx = cardList.size()-1;
+      System.out.print("\n");
       System.out.println("引いたカードの番号：" + cardList.get(lastIdx));
 
-    } else {
+    } else { // Not Reachable
       System.out.println("それぞれのカードセットからカードを引き終わっているため、これ以上引けません");
     }
 

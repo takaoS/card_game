@@ -19,7 +19,8 @@ public class CardPickGame {
   /**
    * 現在の所持コイン数を表示し、ゲームを開始するかどうかユーザーに入力を求め、ゲームを実行する (A) 。
    * 終了する場合は、現在の所持コイン数を返して終了し、開始する場合は、コインをベットしてもらい勝敗に応じてコインを獲得し、Aに戻る。
-   * @return
+   * 
+   * @return 最終的な所持コイン数
    */
   public int execute() {
     while (true) {
@@ -28,6 +29,7 @@ public class CardPickGame {
 
       // ゲームを開始するかどうかユーザーに入力を求める
       while (true) {
+        System.out.print("\n");
         System.out.println("現在の所持コイン数：" + this.possessionCoin + "枚 … ゲームを開始しますか？ y / n");
         String startButton = GameUtils.getInputString();
 
@@ -38,6 +40,7 @@ public class CardPickGame {
 
       // ゲーム開始後の処理
       int currentMaxBetCoin = (this.possessionCoin < this.maxBetCoin) ? this.possessionCoin : this.maxBetCoin;
+      System.out.print("\n");
       System.out.println("1〜" + currentMaxBetCoin + "枚のコインをベットしてください");
 
       int betCoinValue;
@@ -49,18 +52,18 @@ public class CardPickGame {
       // 所持コインからベットした分を引く
       this.possessionCoin -= betCoinValue;
 
-      boolean gameResult = judgeCard(getCard());
+      boolean isWinner = judgeCard(getCard());
       int getCoinValue = 0;
 
-      if (gameResult) { // 勝敗の判定
+      if (isWinner) { // 勝敗の判定
         getCoinValue = betCoinValue * 2; // カードピックゲームで獲得したコイン
         System.out.println("あなたの勝ち！ 獲得コイン：" + getCoinValue + "枚");
 
         // ハイ＆ローゲームの実行
         HighAndLowGame obj_HighAndLowGame = new HighAndLowGame(getCoinValue, this.deckSetCount);
-        int earnedCoin = obj_HighAndLowGame.execute(); // ハイ＆ローゲームで獲得したコイン
+        getCoinValue = obj_HighAndLowGame.execute(); // ハイ＆ローゲームで獲得したコイン
 
-        this.possessionCoin += earnedCoin; // 所持コインに獲得した分を足す
+        this.possessionCoin += getCoinValue; // 所持コインに獲得した分を足す
         
       } else {
         System.out.println("あなたの負けです…残念でした（笑）");
@@ -90,6 +93,7 @@ public class CardPickGame {
 
     // 引いたそれぞれのカードと合計値を出力し、合計値を返す
     int total = cardA + cardB;
+    System.out.print("\n");
     System.out.println("引いたカード：" + cardA + " & " + cardB + " | 合計値：" + total);
     return total;
   }
