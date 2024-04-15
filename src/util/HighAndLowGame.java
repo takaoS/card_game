@@ -33,7 +33,6 @@ public class HighAndLowGame {
 
       // 現在の獲得コイン数が最大獲得コイン数を超えている場合：ゲーム終了
       if (this.earnedCoinCount > this.maxWinCoin) return this.earnedCoinCount;
-      else System.out.println("あなたが獲得したコイン数：" + this.earnedCoinCount + "枚");
 
       // ゲームを開始するかどうかユーザーに入力を求める
       while (true) {
