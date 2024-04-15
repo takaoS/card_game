@@ -7,6 +7,8 @@ import util.HighAndLowGame;
 
 public class ExeTest {
   public static void main(String[] args) {
-    
+    HighAndLowGame obj = new HighAndLowGame(100, 2);
+
+    obj.execute();
   }
  }

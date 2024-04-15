@@ -43,7 +43,44 @@ public class HighAndLowGame {
         if (startButton.equals("y")) break; // ゲーム開始
         else if (startButton.equals("n")) return this.earnedCoinCount; // ゲーム終了
         else System.out.println("開始の場合は y を、終了の場合は n を入力してください"); // 入力エラーの処理
-      }    
+      }
+
+      // ゲーム開始後の処理
+      boolean isHigh;
+      while (true) {
+        System.out.println("次に引くカードの番号の方が、大きいと思う？小さいと思う？ h/l");
+        String ans = GameUtils.getInputString();
+
+        if (ans.equals("h")) {
+          isHigh = true;
+          break;
+
+        } else if (ans.equals("l")) {
+          isHigh = false;
+          break;
+
+        } else {
+          System.out.println("大きいと思う場合は h を、小さいと思う場合は l を入力してください"); // 入力エラーの処理
+        }
+      }
+
+      // カードを引く
+      cardList = this.getCard(cardList);
+
+      // 結果判定
+      boolean gameResult = this.judgeCard(cardList, isHigh);
+      if (gameResult) this.earnedCoinCount *= 2; // 勝ち：獲得コインを２倍にする
+      else this.earnedCoinCount = 0;             // 負け：獲得コインを０にする
+
+      // ゲームを続けるかどうかの判定
+      if (this.earnedCoinCount == 0) {
+        System.out.println("あなたの負け（笑） 獲得コイン：0枚");
+        return this.earnedCoinCount;
+      } else if (this.earnedCoinCount > 0) {
+        System.out.println("あなたの勝ち！ 獲得コイン：" + this.earnedCoinCount + "枚");
+      } else {
+        // Not Reachable
+      }
     }
   }
 
