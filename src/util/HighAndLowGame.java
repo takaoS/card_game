@@ -68,8 +68,8 @@ public class HighAndLowGame {
       cardList = this.getCard(cardList);
 
       // 結果判定
-      boolean gameResult = this.judgeCard(cardList, isHigh);
-      if (gameResult) this.earnedCoinCount *= 2; // 勝ち：獲得コインを２倍にする
+      boolean isWinner = this.judgeCard(cardList, isHigh);
+      if (isWinner) this.earnedCoinCount *= 2; // 勝ち：獲得コインを２倍にする
       else this.earnedCoinCount = 0;             // 負け：獲得コインを０にする
 
       // ゲームを続けるかどうかの判定

@@ -52,10 +52,10 @@ public class CardPickGame {
       // 所持コインからベットした分を引く
       this.possessionCoin -= betCoinValue;
 
-      boolean gameResult = judgeCard(getCard());
+      boolean isWinner = judgeCard(getCard());
       int getCoinValue = 0;
 
-      if (gameResult) { // 勝敗の判定
+      if (isWinner) { // 勝敗の判定
         getCoinValue = betCoinValue * 2; // カードピックゲームで獲得したコイン
         System.out.println("あなたの勝ち！ 獲得コイン：" + getCoinValue + "枚");
 
