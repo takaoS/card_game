@@ -61,9 +61,9 @@ public class CardPickGame {
 
         // ハイ＆ローゲームの実行
         HighAndLowGame obj_HighAndLowGame = new HighAndLowGame(getCoinValue, this.deckSetCount);
-        int earnedCoin = obj_HighAndLowGame.execute(); // ハイ＆ローゲームで獲得したコイン
+        getCoinValue = obj_HighAndLowGame.execute(); // ハイ＆ローゲームで獲得したコイン
 
-        this.possessionCoin += earnedCoin; // 所持コインに獲得した分を足す
+        this.possessionCoin += getCoinValue; // 所持コインに獲得した分を足す
         
       } else {
         System.out.println("あなたの負けです…残念でした（笑）");
