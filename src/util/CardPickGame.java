@@ -28,6 +28,7 @@ public class CardPickGame {
 
       // ゲームを開始するかどうかユーザーに入力を求める
       while (true) {
+        System.out.print("\n");
         System.out.println("現在の所持コイン数：" + this.possessionCoin + "枚 … ゲームを開始しますか？ y / n");
         String startButton = GameUtils.getInputString();
 
@@ -38,6 +39,7 @@ public class CardPickGame {
 
       // ゲーム開始後の処理
       int currentMaxBetCoin = (this.possessionCoin < this.maxBetCoin) ? this.possessionCoin : this.maxBetCoin;
+      System.out.print("\n");
       System.out.println("1〜" + currentMaxBetCoin + "枚のコインをベットしてください");
 
       int betCoinValue;
@@ -90,6 +92,7 @@ public class CardPickGame {
 
     // 引いたそれぞれのカードと合計値を出力し、合計値を返す
     int total = cardA + cardB;
+    System.out.print("\n");
     System.out.println("引いたカード：" + cardA + " & " + cardB + " | 合計値：" + total);
     return total;
   }

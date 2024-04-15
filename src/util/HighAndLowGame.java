@@ -47,6 +47,7 @@ public class HighAndLowGame {
       // ゲーム開始後の処理
       boolean isHigh;
       while (true) {
+        System.out.print("\n");
         System.out.println("次に引くカードの番号の方が、大きいと思う？小さいと思う？ h/l");
         String ans = GameUtils.getInputString();
 
@@ -104,9 +105,10 @@ public class HighAndLowGame {
 
       // 引いたカードを表示する
       int lastIdx = cardList.size()-1;
+      System.out.print("\n");
       System.out.println("引いたカードの番号：" + cardList.get(lastIdx));
 
-    } else {
+    } else { // Not Reachable
       System.out.println("それぞれのカードセットからカードを引き終わっているため、これ以上引けません");
     }
 

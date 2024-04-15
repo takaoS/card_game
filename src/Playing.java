@@ -31,6 +31,6 @@ public class Playing {
     possessionCoin = objCardPickGame.execute();
 
     // ゲーム終了 (結果表示)
-    System.out.println(username + "さんの現在の所持コイン：" + possessionCoin + "枚");
+    System.out.println(username + "さんの最終的な所持コイン：" + possessionCoin + "枚");
   }
 }
