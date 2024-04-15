@@ -1,5 +1,7 @@
 package util;
 
+import util.HighAndLowGame;
+
 public class CardPickGame {
   private int maxBetCoin = 100;  // 最大ベット枚数
   private int deckSetCount = 2;  // カードセット数
@@ -51,9 +53,14 @@ public class CardPickGame {
       int getCoinValue = 0;
 
       if (gameResult) { // 勝敗の判定
-        getCoinValue = betCoinValue * 2;
+        getCoinValue = betCoinValue * 2; // カードピックゲームで獲得したコイン
         System.out.println("あなたの勝ち！ 獲得コイン：" + getCoinValue + "枚");
-        this.possessionCoin += getCoinValue; // 所持コインに獲得した分を足す
+
+        // ハイ＆ローゲームの実行
+        HighAndLowGame obj_HighAndLowGame = new HighAndLowGame(getCoinValue, this.deckSetCount);
+        int earnedCoin = obj_HighAndLowGame.execute(); // ハイ＆ローゲームで獲得したコイン
+
+        this.possessionCoin += earnedCoin; // 所持コインに獲得した分を足す
         
       } else {
         System.out.println("あなたの負けです…残念でした（笑）");
