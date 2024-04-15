@@ -16,12 +16,13 @@ public class Playing {
 
     // ユーザー名の入力
     System.out.println("ユーザー名を入力してください");
-    boolean checkResult;
-    do {
+    while (true) {
       username = GameUtils.getInputString();
-      checkResult = GameUtils.checkPattern(username);
-      if (!checkResult) System.out.println("4〜12文字の半角アルファベットで入力してください");
-    } while (!checkResult);
+      
+      boolean isMatched = GameUtils.checkPattern(username);
+      if (isMatched) break;
+      else System.out.println("4〜12文字の半角アルファベットで入力してください");
+    }
 
     // ユーザー名の入力完了
     System.out.println(username + "さん、こんにちは！");
