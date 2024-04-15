@@ -27,12 +27,12 @@ public class HighAndLowGame {
    */
   public int execute() {
     while (true) {
+      // 現在の獲得コイン数が最大獲得コイン数を超えている場合：ゲーム終了
+      if (this.earnedCoinCount > this.maxWinCoin) return this.earnedCoinCount;
+      
       // まずはカードを引き、そのカードの番号を出力する
       List<Integer> cardList = new ArrayList<Integer>();
       cardList = this.getCard(cardList);
-
-      // 現在の獲得コイン数が最大獲得コイン数を超えている場合：ゲーム終了
-      if (this.earnedCoinCount > this.maxWinCoin) return this.earnedCoinCount;
 
       // ゲームを開始するかどうかユーザーに入力を求める
       while (true) {
