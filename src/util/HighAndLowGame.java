@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HighAndLowGame {
@@ -19,12 +20,40 @@ public class HighAndLowGame {
   }
 
   /**
+   * まずはカードを引き、そのカードの番号を出力した後、ハイ＆ローゲームに挑戦するかどうかユーザーに入力を求め、ゲームを実行する (A) 。
+   * 終了する場合は、獲得したコインを数を返して終了し、挑戦する場合は、次に引くカードの番号の方が大きいかどうかを予想してもらい、その結果に応じてコインを獲得し、Aに戻る。
+   * 
+   * @return
+   */
+  public int execute() {
+    while (true) {
+      // まずはカードを引き、そのカードの番号を出力する
+      List<Integer> cardList = new ArrayList<Integer>();
+      cardList = this.getCard(cardList);
+
+      // 現在の獲得コイン数が最大獲得コイン数を超えている場合：ゲーム終了
+      if (this.earnedCoinCount > this.maxWinCoin) return this.earnedCoinCount;
+      else System.out.println("あなたが獲得したコイン数：" + this.earnedCoinCount + "枚");
+
+      // ゲームを開始するかどうかユーザーに入力を求める
+      while (true) {
+        System.out.println("ハイ＆ローゲームに挑戦しますか？ y/n");
+        String startButton = GameUtils.getInputString();
+
+        if (startButton.equals("y")) break; // ゲーム開始
+        else if (startButton.equals("n")) return this.earnedCoinCount; // ゲーム終了
+        else System.out.println("開始の場合は y を、終了の場合は n を入力してください"); // 入力エラーの処理
+      }    
+    }
+  }
+
+  /**
    * カードセットの中から、ランダムにカードを1枚引く。
    * 
    * @param cardList 現在の引いたカードリスト
    * @return カードリスト
    */
-  public List<Integer> getCard(List<Integer> cardList) {
+  private List<Integer> getCard(List<Integer> cardList) {
     // カードは、それぞれのカードセットから1枚ずつしか引けない
     // そのため、引いたカードの合計枚数が、カードセット数よりも多くなってはダメ
     if (cardList.size() + 1 <= deckSetCount) {
@@ -56,7 +85,7 @@ public class HighAndLowGame {
    * @param pickChoice 最後に引いたカードの番号が、一つ前に引いたカードより大きいかどうか (大きい：true , 小さい：false)
    * @return 判定結果 (勝ち：true , 負け：false)
    */
-  public boolean judgeCard(List<Integer> cardList, boolean pickChoice) {
+  private boolean judgeCard(List<Integer> cardList, boolean pickChoice) {
     int lastIdx = cardList.size()-1;
 
     int cardA = cardList.get(lastIdx);   // カードリストの最後のカード
