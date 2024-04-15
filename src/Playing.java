@@ -5,7 +5,7 @@ public class Playing {
   /**
    * ゲーム開始から結果表示までの処理を行う。
    * 
-   * @param args
+   * @param args お約束の引数
    */
   public static void main(String[] args) {
     String username = "";
