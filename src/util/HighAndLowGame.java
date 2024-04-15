@@ -47,4 +47,25 @@ public class HighAndLowGame {
 
     return cardList;
   }
+
+  /**
+   * 引数に引き渡された cardList, pickChoice を元に大小比較判定を行い、その結果を返却する。
+   * 最後に引いたカードの番号が、一つ前に引いたカードより大きい場合に勝ち。
+   * 
+   * @param cardList カードリスト
+   * @param pickChoice 最後に引いたカードの番号が、一つ前に引いたカードより大きいかどうか (大きい：true , 小さい：false)
+   * @return 判定結果 (勝ち：true , 負け：false)
+   */
+  public boolean judgeCard(List<Integer> cardList, boolean pickChoice) {
+    int lastIdx = cardList.size()-1;
+
+    int cardA = cardList.get(lastIdx);   // カードリストの最後のカード
+    int cardB = cardList.get(lastIdx-1); // 一つ前のカード
+
+    // 結果を判定
+    if (cardA == cardB) return false;
+    else if (cardA > cardB) return (pickChoice) ? true : false;
+    else if (cardA < cardB) return (!pickChoice) ? true : false;
+    else return false; // Not Reachable
+  }
 }
